@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Therapy Diaries</string>
+    <string name="Password_hint">Пароль</string>
+    <string name="email_hint">Email</string>
+    <string name="login_hint">Логин</string>
+    <string name="Name_hint">Имя</string>
+</resources>
