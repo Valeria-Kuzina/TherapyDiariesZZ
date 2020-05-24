@@ -81,7 +81,12 @@ public class LoginActivity extends AppCompatActivity {
         Cursor cursor = mDb.rawQuery("Select * from users where (email=? or login=?) and password=?",
                 new String[]{email,email, password});
         if (cursor.getCount() > 0 && cursor.getCount() < 2) {
-
+            cursor.moveToFirst();
+            int indexId = cursor.getColumnIndex("_id");
+            int indexMode = cursor.getColumnIndex("Mode");
+            ((MyApplication) this.getApplication()).setUserId(cursor.getInt(indexId));
+            ((MyApplication) this.getApplication()).setMode(cursor.getString(indexMode));
+            cursor.close();
             new android.os.Handler().postDelayed(
                     () -> {
                         // On complete call either onLoginSuccess or onLoginFailed

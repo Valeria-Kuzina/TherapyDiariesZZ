@@ -37,4 +37,10 @@
         <item name="cardBackgroundColor">@color/primary_darker</item>
     </style>
 
+    <style name="TransparentButton" parent="Widget.AppCompat.Button">
+        <item name="android:stateListAnimator" tools:targetApi="lollipop">@null</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/accent</item>
+    </style>
+
 </resources>

@@ -1,22 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:fitsSystemWindows="true">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent"
-        android:paddingTop="56dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+    <TextView
+        android:id="@+id/diary_wishes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="Дневник желаний"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="140dp"
+        android:textSize="20sp"/>
 
-    <ListView
-        android:id="@+id/lv"
-        android:layout_width="match_parent"
-        android:layout_height="200dp" />
+    <View
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:background="@color/accent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/diary_wishes"
+        android:layout_marginTop="25dp"/>
 
-</LinearLayout>
-</ScrollView>
+    <TextView
+        android:id="@+id/diary_gratitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/diary_wishes"
+        android:text="Дневник благодарностей"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textSize="20sp"/>
+
+    <View
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:background="@color/accent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/diary_gratitude"
+        android:layout_marginTop="25dp"/>
+
+    <TextView
+        android:id="@+id/diary_fears"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/diary_gratitude"
+        android:text="Дневник страхов"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textSize="20sp"/>
+
+    <View
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:background="@color/accent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/diary_fears"
+        android:layout_marginTop="25dp"/>
+
+    <TextView
+        android:id="@+id/diary_emotions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/diary_fears"
+        android:text="Дневник эмоций"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textSize="20sp"/>
+
+    <View
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:background="@color/accent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/diary_emotions"
+        android:layout_marginTop="25dp"/>
+
+    <TextView
+        android:id="@+id/diary_meditations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/diary_emotions"
+        android:text="Дневник медитаций"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textSize="20sp"/>
+
+    <View
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:background="@color/accent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/diary_meditations"
+        android:layout_marginTop="25dp"/>
+
+    <TextView
+        android:id="@+id/diary_panic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/diary_meditations"
+        android:text="Дневник панических атак"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textSize="20sp"/>
+
+</RelativeLayout>

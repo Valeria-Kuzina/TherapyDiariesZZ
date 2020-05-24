@@ -66,6 +66,11 @@
                 android:hint="@string/Password_hint"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <Spinner
+            android:id="@+id/spinner_signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
         <!-- Signup Button -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_signup"
@@ -83,6 +88,8 @@
             android:text="Уже есть аккаунт? Вход"
             android:gravity="center"
             android:textSize="16dip"/>
+
+
 
     </LinearLayout>
 </ScrollView>

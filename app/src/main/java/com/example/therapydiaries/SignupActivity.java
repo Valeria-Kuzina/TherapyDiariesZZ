@@ -7,8 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,24 +35,50 @@ public class SignupActivity extends AppCompatActivity {
     Button _signupButton;
     @BindView(R.id.link_login)
     TextView _loginLink;
+    @BindView(R.id.spinner_signup)
+    Spinner spinner;
     SQLiteDatabase mDb;
-    public static final String EXTRA_MESSAGE = "user_login";
-    public static final String EXTRA_MESSAGE1 = "password";
+    String[] modes = new String[]{"Обычный", "Про", "СуперПро"};
+    String selectedMode;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
-
-        mDb = ((MyApplication) this.getApplication()).getmDBHelper().getWritableDatabase();
-
+        initSpinner();
         _signupButton.setOnClickListener(v -> signup());
 
         _loginLink.setOnClickListener(v -> {
             // Finish the registration screen and return to the Login activity
             finish();
         });
+    }
+
+    @Override
+    public void finish() {
+        mDb.close();
+        super.finish();
+    }
+
+    private void initSpinner() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, modes);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        mDb = ((MyApplication) this.getApplication()).getmDBHelper().getWritableDatabase();
+        AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedMode = (String)parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                selectedMode = (String)parent.getItemAtPosition(0);
+            }
+        };
+        spinner.setOnItemSelectedListener(itemSelectedListener);
     }
 
     public void signup() {
@@ -79,12 +108,15 @@ public class SignupActivity extends AppCompatActivity {
         newValues.put("Email", email);
         newValues.put("Password", password);
         newValues.put("Name", name);
+        newValues.put("Mode", selectedMode);
         int newId = (int) mDb.insert("Users", null, newValues);
         Log.e(TAG, "signup: " + newId);
         if (newId == -1) {
             onSignupFailed();
             return;
         }
+        ((MyApplication) this.getApplication()).setUserId(newId);
+        ((MyApplication) this.getApplication()).setMode(selectedMode);
         new android.os.Handler().postDelayed(
                 () -> {
 //                    mDb.insert("Users", null, newValues);
