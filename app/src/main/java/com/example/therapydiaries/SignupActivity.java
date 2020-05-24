@@ -42,7 +42,7 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         ButterKnife.bind(this);
 
-        mDb = ((MyApplication) this.getApplication()).getmDb();
+        mDb = ((MyApplication) this.getApplication()).getmDBHelper().getWritableDatabase();
 
         _signupButton.setOnClickListener(v -> signup());
 
@@ -79,12 +79,12 @@ public class SignupActivity extends AppCompatActivity {
         newValues.put("Email", email);
         newValues.put("Password", password);
         newValues.put("Name", name);
-//        if (mDb.insert("Users", null, newValues) == -1) {
-//            onSignupFailed();
-//            return;
-//        }
-        mDb.execSQL("insert into Users(Name, Login, Email, Password)" +
-                " values ('" + name + "', '" + login + "', '" + email + "', '" + password +"');");
+        int newId = (int) mDb.insert("Users", null, newValues);
+        Log.e(TAG, "signup: " + newId);
+        if (newId == -1) {
+            onSignupFailed();
+            return;
+        }
         new android.os.Handler().postDelayed(
                 () -> {
 //                    mDb.insert("Users", null, newValues);

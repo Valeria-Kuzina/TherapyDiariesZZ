@@ -35,15 +35,26 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
-        mDb = ((MyApplication) this.getApplication()).getmDb();
-
         _loginButton.setOnClickListener(v -> login());
 
         _signupLink.setOnClickListener(v -> {
-            // Start the Signup activity
-            Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
-            startActivityForResult(intent, REQUEST_SIGNUP);
+            // Start the Sign up activity
+            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+            mDb.close();
+            startActivity(intent);
         });
+    }
+
+    @Override
+    protected void onResume() {
+        mDb = ((MyApplication) this.getApplication()).getmDBHelper().getWritableDatabase();
+        super.onResume();
+    }
+
+    @Override
+    public void finish() {
+        mDb.close();
+        super.finish();
     }
 
     public void login() {
@@ -91,22 +102,22 @@ public class LoginActivity extends AppCompatActivity {
         cursor.close();
     }
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_SIGNUP) {
-            if (resultCode == RESULT_OK) {
-
-                // TODO: Implement successful signup logic here
-                Cursor cursor = mDb.rawQuery("select id_users from users where (email=? or login=?) and password=?",new String[]{email,email, password});
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra(EXTRA_MESSAGE,cursor.getInt(0));
-                startActivity(intent);
-                this.finish();
-            }
-        }
-    }
+//
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == REQUEST_SIGNUP) {
+//            if (resultCode == RESULT_OK) {
+//
+//                // TODO: Implement successful signup logic here
+//                Cursor cursor = mDb.rawQuery("select id_users from users where (email=? or login=?) and password=?",new String[]{email,email, password});
+//                Intent intent = new Intent(this, MainActivity.class);
+//                intent.putExtra(EXTRA_MESSAGE,cursor.getInt(0));
+//                startActivity(intent);
+//                this.finish();
+//            }
+//        }
+//    }
 
 //    @Override
 //    public void onBackPressed() {

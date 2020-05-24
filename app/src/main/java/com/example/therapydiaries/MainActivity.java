@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mDb = ((MyApplication) this.getApplication()).getmDb();
+        mDb = ((MyApplication) this.getApplication()).getmDBHelper().getWritableDatabase();
 
         listView=(ListView)findViewById(R.id.lv);
 

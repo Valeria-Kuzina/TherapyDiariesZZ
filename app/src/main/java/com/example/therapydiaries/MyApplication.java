@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class MyApplication extends Application {
 
-    SQLiteDatabase mDb;
+//    SQLiteDatabase mDb;
     DBHelper mDBHelper;
 
     @Override
@@ -22,16 +22,20 @@ public class MyApplication extends Application {
         } catch (IOException mIOException) {
             throw new Error("UnableToUpdateDatabase");
         }
-
-        try {
-            mDb = mDBHelper.getWritableDatabase();
-        } catch (SQLException mSQLException) {
-            throw mSQLException;
-        }
+//
+//        try {
+//            mDb = mDBHelper.getWritableDatabase();
+//        } catch (SQLException mSQLException) {
+//            throw mSQLException;
+//        }
     }
+//
+//    public SQLiteDatabase getmDb() {
+//        return mDb;
+//    }
 
-    public SQLiteDatabase getmDb() {
-        return mDb;
+
+    public DBHelper getmDBHelper() {
+        return mDBHelper;
     }
-
 }

@@ -34,15 +34,15 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void updateDataBase() throws IOException {
-//        if (mNeedUpdate) {
-//            File dbFile = new File(DB_PATH + DB_NAME);
-//            if (dbFile.exists())
-//                dbFile.delete();
-//
-//            copyDataBase();
-//
-//            mNeedUpdate = false;
-//        }
+        if (mNeedUpdate) {
+            File dbFile = new File(DB_PATH + DB_NAME);
+            if (dbFile.exists())
+                dbFile.delete();
+
+            copyDataBase();
+
+            mNeedUpdate = false;
+        }
     }
 
     private boolean checkDataBase() {
