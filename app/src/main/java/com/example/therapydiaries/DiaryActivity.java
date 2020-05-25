@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -19,6 +20,7 @@ public class DiaryActivity extends AppCompatActivity {
     ArrayList<String> rows;
     ListView list;
     SQLiteDatabase mDb;
+    TextView title;
     String diaryType;
     int userId;
     FloatingActionButton createRow;
@@ -29,6 +31,8 @@ public class DiaryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_diary);
         diaryType = getIntent().getStringExtra("diary_type");
         list = findViewById(R.id.list_diary);
+        title = findViewById(R.id.title_diary);
+        setDiaryTitle();
         createRow = findViewById(R.id.button_new_row);
         mDb = ((MyApplication) this.getApplication()).getmDBHelper().getWritableDatabase();
         userId = ((MyApplication) this.getApplication()).getUserId();
@@ -58,5 +62,28 @@ public class DiaryActivity extends AppCompatActivity {
             rows.add(cursor.getString(indexText));
         }
         cursor.close();
+    }
+
+    private void setDiaryTitle() {
+        switch (diaryType){
+            case ("Wish"):
+                title.setText("Дневник желаний");
+                break;
+            case ("Gratitude"):
+                title.setText("Дневник благодарностей");
+                break;
+            case ("Fear"):
+                title.setText("Дневник страхов");
+                break;
+            case ("Panic"):
+                title.setText("Дневник панических атак");
+                break;
+            case ("Meditation"):
+                title.setText("Дневник медитаций");
+                break;
+            case ("Emotion"):
+                title.setText("Дневник эмоций");
+                break;
+        }
     }
 }
