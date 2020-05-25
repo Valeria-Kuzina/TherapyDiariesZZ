@@ -10,7 +10,7 @@
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
 
-        <item name="android:windowBackground">@color/primary</item>
+        <item name="android:windowBackground">@drawable/bg_1</item>
 
         <item name="colorControlNormal">@color/white</item>
         <item name="colorControlActivated">@color/white</item>
@@ -19,6 +19,19 @@
 
         <item name="colorButtonNormal">@color/primary_darker</item>
         <item name="android:colorButtonNormal" tools:targetApi="lollipop">@color/primary_darker</item>
+    </style>
+
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Dialog">
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorPrimaryDark">@color/accent</item>
+        <item name="colorPrimary">@color/accent</item>
+        <!--        <item name="android:background">@color/colorTransparent</item>-->
+        <item name="android:colorBackground">@color/colorTransparent</item>
+        <item name="android:backgroundDimAmount">0.74</item>
+        <item name="android:textColor">@color/accent</item>
+        <item name="android:textColorHint">@color/iron</item>
+        <item name="colorControlNormal">@color/white</item>
+        <!--        <item name="android:backgroundTint">@drawable/background_card_1</item>-->
     </style>
 
     <style name="AppTheme.Dark.Dialog" parent="Theme.AppCompat.Dialog">
@@ -41,6 +54,16 @@
         <item name="android:stateListAnimator" tools:targetApi="lollipop">@null</item>
         <item name="android:background">@android:color/transparent</item>
         <item name="android:textColor">@color/accent</item>
+    </style>
+
+    <style name="MyFloatButton">
+        <item name="android:layout_margin">17dp</item>
+        <item name="maxImageSize">38dp</item>
+        <item name="srcCompat">@drawable/pencil_white</item>
+        <item name="android:clickable">true</item>
+        <item name="android:backgroundTint" tools:targetApi="lollipop">@color/colorTransparent</item>
+        <item name="android:layout_alignParentEnd" tools:targetApi="jelly_bean_mr1">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
     </style>
 
 </resources>

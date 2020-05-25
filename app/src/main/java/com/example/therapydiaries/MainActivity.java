@@ -49,7 +49,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dMeditation = findViewById(R.id.diary_meditations);
         dPanic = findViewById(R.id.diary_panic);
 
-
+        dWishes.setOnClickListener(this);
+        dGratitude.setOnClickListener(this);
+        dFears.setOnClickListener(this);
+        dEmotions.setOnClickListener(this);
+        dMeditation.setOnClickListener(this);
+        dPanic.setOnClickListener(this);
 
 //        listView=(ListView)findViewById(R.id.lv);
 //        Intent intent1 = new Intent(this, LoginActivity.class);
@@ -67,30 +72,47 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+        Intent intent = new Intent(MainActivity.this, DiaryActivity.class);
         switch (v.getId()){
             case (R.id.diary_wishes):
-
+                intent.putExtra("diary_type", "Wish");
+                startActivity(intent);
                 break;
             case (R.id.diary_gratitude):
-
+                intent.putExtra("diary_type", "Gratitude");
+                startActivity(intent);
                 break;
             case  (R.id.diary_fears):
-                if (mode.equals("Обычный"))
+                if (mode.equals("Обычный")) {
                     makeToast("Этот дневник доступен только Про или СуперПро");
+                    return;
+                }
+                intent.putExtra("diary_type", "Fear");
+                startActivity(intent);
                 break;
             case  (R.id.diary_emotions):
-                if (mode.equals("Обычный"))
+                if (mode.equals("Обычный")) {
                     makeToast("Этот дневник доступен только Про или СуперПро");
-
+                    return;
+                }
+                intent.putExtra("diary_type", "Emotion");
+                startActivity(intent);
                 break;
             case  (R.id.diary_meditations):
-                if (!mode.equals("СуперПро"))
+                if (!mode.equals("СуперПро")) {
                     makeToast("Этот дневник доступен только СуперПро");
+                    return;
+                }
+                intent.putExtra("diary_type", "Meditation");
+                startActivity(intent);
                 break;
             case  (R.id.diary_panic):
-                if (!mode.equals("СуперПро"))
+                if (!mode.equals("СуперПро")) {
                     makeToast("Этот дневник доступен только СуперПро");
-
+                    return;
+                }
+                intent.putExtra("diary_type", "Panic");
+                startActivity(intent);
                 break;
         }
     }
