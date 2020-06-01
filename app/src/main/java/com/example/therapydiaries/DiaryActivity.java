@@ -38,7 +38,7 @@ public class DiaryActivity extends AppCompatActivity {
         userId = ((MyApplication) this.getApplication()).getUserId();
         createRow.setOnClickListener(v -> newRowClicked());
     }
-
+//
     private void newRowClicked() {
         Intent intent = new Intent(DiaryActivity.this, CreateRowActivity.class);
         intent.putExtra("diary_type", diaryType);
